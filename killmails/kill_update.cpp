@@ -140,7 +140,7 @@ void worker_thread(int worker_id, std::string queueID, int ttw, std::string db_i
 			}
 			// Checo if zkb is null
 			if (zkb.is_null()) {
-				std::cerr << "Worker: " << worker_id << " DEBUG: no zkb block in payload; SKIPPIN" << std::endl;
+				std::cerr << "Worker: " << worker_id << " DEBUG: no zkb block in payload; SKIPPING " << std::endl;
 				continue;
 			} else {
 				std::cout << "Worker: " << worker_id << " PAYLOAD: parsing zkb block;" << std::endl;
@@ -208,7 +208,7 @@ void worker_thread(int worker_id, std::string queueID, int ttw, std::string db_i
 			// Parse time from ESI. If parse fails, skip time.
 			std::time_t unix_time = 0;
 			if (!parse_iso_utc_to_time_t(esi_killmail_time, unix_time)) {
-				std::cerr << "Worker: " << worker_id << " failed to parse ESI killmail_time '" << esi_killmail_time << "'. SKIPPING" << std::endl;
+				std::cerr << "Worker: " << worker_id << " failed to parse ESI killmail_time '" << esi_killmail_time << "'. SKIPPING " << std::endl;
 				std::this_thread::sleep_for(std::chrono::seconds(5));
 				continue;
 			}
